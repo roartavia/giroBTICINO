@@ -1,0 +1,33 @@
+.text_field {
+    width: 100%;
+    min-height: 40px;
+    margin-top: 5px;
+    font-family: "Lato";
+    word-wrap: break-word;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 14px;
+}
+
+.label {
+    font-family: "Oswald", sans-serif;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.dropdown_list {
+    list-style: none;
+    padding-left: 0px;
+}
+
+#selector {
+    padding-top: 2px;
+}
+
+.checkbox {
+    list-style: none;
+}
+
+.hidden { display: none; }
+.shown {display: block; }
