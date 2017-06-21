@@ -1,38 +1,29 @@
 <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    $idCuenta = 0;
-    if (isset($_GET['id'])) {
-        $idCuenta = $_GET['id'];
-    }
     global $wpdb;
-    $sqlSelectFromCuentas = 'select * from cuentas where id='.$idCuenta;
-    $rows = $wpdb->get_results($sqlSelectFromCuentas);
 ?>
 <html>
     <body>
         <form method="post">
             <h1 class='label'>Nombre de la cuenta</h1>
-            <input name='nombre' placeholder='Nombre de la cuenta' class='text_field' value="<?php if(isset($rows[0]->nombre)) {echo htmlspecialchars($rows[0]->nombre);} ?>" />
+            <input name='nombre' placeholder='Nombre de la cuenta' class='text_field' value="" />
             <h1 class='label'>Tipo</h1>
-            <input name='tipo' placeholder='Tipo' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->tipo);} ?>" />
+            <input name='tipo' placeholder='Tipo' class='text_field' value="" />
             <h1 class='label'>Subtipo</h1>
-            <input name='sub_tipo' placeholder='Subtipo' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->subtipo);} ?>" />
+            <input name='sub_tipo' placeholder='Subtipo' class='text_field' value="" />
             <h1 class='label'>Teléfono</h1>
-            <input name='telefono' placeholder='Telefono' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->telefono);} ?>" />
+            <input name='telefono' placeholder='Telefono' class='text_field' value="" />
             <h1 class='label'>Sitio Web</h1>
-            <input name='sitio_web' placeholder='Sitio Web' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->sitioWeb);} ?>" />
+            <input name='sitio_web' placeholder='Sitio Web' class='text_field' value="" />
             <h1 class='label'>País físico</h1>
-            <input name='pais' placeholder='Pais' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->paisFisico);} ?>" />
+            <input name='pais' placeholder='Pais' class='text_field' value="" />
             <h1 class='label'>Provincia / Departamento físico</h1>
-            <input name='provincia' placeholder='Provincia' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->provincia);} ?>" />
+            <input name='provincia' placeholder='Provincia' class='text_field' value="" />
             <h1 class='label'>Cantón / Muncicipio / Cabecera físico</h1>
-            <input name='canton' placeholder='Canton' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->canton);} ?>" />
+            <input name='canton' placeholder='Canton' class='text_field' value="" />
             <h1 class='label'>Zona / Distrito físico</h1>
-            <input name='zona' placeholder='Zona' class='text_field' value="<?php if(isset($rows[0]->zona)) {echo htmlspecialchars($rows[0]->zona);} ?>" />
+            <input name='zona' placeholder='Zona' class='text_field' value="" />
             <h1 class='label'>Dirección física</h1>
-            <input name='direccion' placeholder='Direccion' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->direccion);} ?>" />
+            <input name='direccion' placeholder='Direccion' class='text_field' value="" />
 
             <h1 class='label'>Lineas disponibles Bticino</h1>
             <ul class='dropdown_list'>
@@ -63,13 +54,13 @@
             </ul>
 
             <h1 class='label'>Descripción</h1>
-            <input name='descripcion' placeholder='Descripcion' class='text_field' value="<?php if(isset($rows[0]->descripcion)) {echo htmlspecialchars($rows[0]->descripcion);} ?>" />
+            <input name='descripcion' placeholder='Descripcion' class='text_field' value="" />
             <h1 class='label'>Localizacion (Latitud)</h1>
-            <input name='latitud' placeholder='Latitud' class='text_field' value="<?php if(isset($rows[0]->latitud)) {echo htmlspecialchars($rows[0]->latitud);} ?>" />
+            <input name='latitud' placeholder='Latitud' class='text_field' value="" />
             <h1 class='label'>Localizacion (Longitud)</h1>
-            <input name='longitud' placeholder='Longitud' class='text_field' value="<?php if(isset($rows[0]->longitud)) {echo htmlspecialchars($rows[0]->longitud);} ?>" />
+            <input name='longitud' placeholder='Longitud' class='text_field' value="" />
             <!--submit button-->
-            <input type ="submit" name="save" id="save" value="Guardar">
+            <input type ="submit" name="save" id="save" value="Crear">
         </form>
         <?php
         if(isset($_POST['save']))

@@ -31,3 +31,16 @@
 
 .hidden { display: none; }
 .shown {display: block; }
+
+.margin_top {
+    margin-top: 50px;
+}
+
+.hero {
+    min-height: 200px !important;
+}
+
+.hero-inner {
+    height: 120px !important;
+    padding-top: 40px !important;
+}
