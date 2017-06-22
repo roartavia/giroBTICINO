@@ -77,8 +77,8 @@
             </div>
 
             <div id="modal_correct">
-                <div class="section-black-modal-BG <?php if($newRow){ echo show; }?>"></div>
-                <div class="section-modal-legal-disclaimer <?php if($newRow){ echo show; }?>">
+                <div class="section-black-modal-BG here <?php if($newRow){ echo show; }?>"></div>
+                <div class="section-modal-legal-disclaimer here <?php if($newRow){ echo show; }?>">
                     <div class="section-modal-top-close-bg"></div>
                     <div class="section-modal-txt">La creacion de la cuenta fue exitosa, presione continuar.</div>
                     <div class="section-modal-bottom-close-btn"><input class="close-btn" type ="submit" name="continuar" id="continuar" value="Continuar"/></div>
@@ -133,6 +133,8 @@
                 $newRow = $wpdb->query($sql);
                 if($newRow) {
                     $message = "Cuenta creada correctamente.";
+                    echo "<script type='text/javascript'>document.getElementsByClassName('here')[0].style.display = 'block';</script>";
+                    echo "<script type='text/javascript'>document.getElementsByClassName('here')[1].style.display = 'block';</script>";
                     //echo "<script type='text/javascript'>alert('$message');</script>";
                     //echo '<script>window.location.href = "http://girobticino.com/menuprincipal/";</script>';
                     //exit;
