@@ -15,5 +15,17 @@
                 }
             }
         };
+
+        var closeItems = document.getElementById("close_btn");
+        if(closeItems) {
+            closeItems.onclick = function () {
+                    var divModal = document.getElementsByClassName("section-modal-legal-disclaimer")[0];
+                    var divBlackBG = document.getElementsByClassName("section-black-modal-BG")[0];
+                    divModal.classList.remove('shown');
+                    divBlackBG.classList.remove('shown');
+                    divModal.classList.add('hidden');
+                    divBlackBG.classList.add('hidden');
+            }
+        }
     };
 })();

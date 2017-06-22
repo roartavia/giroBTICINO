@@ -1,6 +1,13 @@
+<?php
+    if ( ! is_user_logged_in() && ! is_page( 'login' ) ) {
+        $newLocation = '<script>window.location.href = "http://girobticino.com/";</script>';
+        echo $newLocation;
+        exit;
+    }
+?>
 <form method="post">
     <h1 class='label'>Seleccione la cuenta que desea editar</h1>
-    <select>
+    <select name="opcionesCuentas">
         <?php
             global $wpdb;
             $rows = $wpdb->get_results('select id, nombre from cuentas');
@@ -16,5 +23,10 @@
     <input type ="submit" name="edit" id="edit" value="Editar">
 </form>
 <?php
-
+    if(isset($_POST['edit']))
+    {
+        $idSelected =  $_POST['opcionesCuentas'];
+        $newLocation = '<script>window.location.href = "http://girobticino.com/editarcuenta/?id='.$idSelected.'";</script>';
+        echo $newLocation;
+    }
 ?>
