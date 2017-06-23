@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <?php
     if ( ! is_user_logged_in() && ! is_page( 'login' ) ) {
         $newLocation = '<script>window.location.href = "http://girobticino.com/";</script>';
@@ -5,6 +6,10 @@
         exit;
     }
     global $wpdb;
+    $PROVINCIAS_CR = ['San Jose', 'Cartago'];
+    $CANTON_CR = ['Goicoechea', 'Coronado'];
+    $PROVINCIAS_GUA = ['Guatemala','Alta Verapaz','Baja Verapaz'];
+    $CANTON_GUA = ['Palencia','Chinautla','San Pedro Ayampuc','Mixco','San Pedro Sacatepéquez'];
 ?>
 <html>
     <body>
@@ -20,11 +25,50 @@
             <h1 class='label'>Sitio Web</h1>
             <input name='sitio_web' placeholder='Sitio Web' class='text_field' value="" />
             <h1 class='label'>País físico</h1>
-            <input name='pais' placeholder='Pais' class='text_field' value="" />
+            <select name='pais'>
+                    <option value='Guatemala'>Guatemala</option>
+                    <option value='Costa Rica'>Costa Rica</option>
+            <select>
             <h1 class='label'>Provincia / Departamento físico</h1>
-            <input name='provincia' placeholder='Provincia' class='text_field' value="" />
+            <select name='provincia'>
+                <?php
+                    $paisSelected = $_GET['pais'];
+                    echo $paisSelected;
+                    if ($paisSelected=='Costa Rica') {
+                        $countRows = sizeof($PROVINCIAS_CR);
+                        for ($i = 0; $i < $countRows; $i++) {
+                            $nombre = $PROVINCIAS_CR[$i];
+                            echo "<option value='$nombre'>$nombre</option>";
+                        }
+                    } else {
+                        $countRows = sizeof($PROVINCIAS_GUA);
+                        for ($i = 0; $i < $countRows; $i++) {
+                            $nombre = $PROVINCIAS_GUA[$i];
+                            echo "<option value='$nombre'>$nombre</option>";
+                        }
+                    }
+                ?>
+            </select>
             <h1 class='label'>Cantón / Muncicipio / Cabecera físico</h1>
-            <input name='canton' placeholder='Canton' class='text_field' value="" />
+            <select name='canton'>
+                <?php
+                    $paisSelected = $_GET['pais'];
+                    echo $paisSelected;
+                    if ($paisSelected=='Costa Rica') {
+                        $countRows = sizeof($CANTON_CR);
+                        for ($i = 0; $i < $countRows; $i++) {
+                            $nombre = $CANTON_CR[$i];
+                            echo "<option value='$nombre'>$nombre</option>";
+                        }
+                    } else {
+                        $countRows = sizeof($CANTON_GUA);
+                        for ($i = 0; $i < $countRows; $i++) {
+                            $nombre = $CANTON_GUA[$i];
+                            echo "<option value='$nombre'>$nombre</option>";
+                        }
+                    }
+                ?>
+            </select>
             <h1 class='label'>Zona / Distrito físico</h1>
             <input name='zona' placeholder='Zona' class='text_field' value="" />
             <h1 class='label'>Dirección física</h1>
@@ -60,12 +104,14 @@
 
             <h1 class='label'>Descripción</h1>
             <input name='descripcion' placeholder='Descripcion' class='text_field' value="" />
+            <input type ="button" name="getLocation" id="getLocation" value="Traer mi ubicacion"/>
             <h1 class='label'>Localizacion (Latitud)</h1>
-            <input name='latitud' placeholder='Latitud' class='text_field' value="" />
+            <input name='latitud' id='latitud' placeholder='Latitud' class='text_field' value="" />
             <h1 class='label'>Localizacion (Longitud)</h1>
-            <input name='longitud' placeholder='Longitud' class='text_field' value="" />
+            <input name='longitud' id='longitud' placeholder='Longitud' class='text_field' value="" />
+
             <!--submit button-->
-            <input type ="submit" name="save" id="save" value="Crear">
+            <input type ="submit" name="save" id="save" value="Crear"/>
 
             <div id="modal">
                 <div class="section-black-modal-BG"></div>

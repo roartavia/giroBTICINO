@@ -66,10 +66,11 @@
 
             <h1 class='label'>Descripción</h1>
             <input name='descripcion' placeholder='Descripcion' class='text_field' value="<?php if(isset($rows[0]->descripcion)) {echo htmlspecialchars($rows[0]->descripcion);} ?>" />
+            <input type ="button" name="getLocation" id="getLocation" value="Traer mi ubicacion"/>
             <h1 class='label'>Localizacion (Latitud)</h1>
-            <input name='latitud' placeholder='Latitud' class='text_field' value="<?php if(isset($rows[0]->latitud)) {echo htmlspecialchars($rows[0]->latitud);} ?>" />
+            <input name='latitud' id='latitud' placeholder='Latitud' class='text_field' value="<?php if(isset($rows[0]->latitud)) {echo htmlspecialchars($rows[0]->latitud);} ?>" />
             <h1 class='label'>Localizacion (Longitud)</h1>
-            <input name='longitud' placeholder='Longitud' class='text_field' value="<?php if(isset($rows[0]->longitud)) {echo htmlspecialchars($rows[0]->longitud);} ?>" />
+            <input name='longitud' id='longitud' placeholder='Longitud' class='text_field' value="<?php if(isset($rows[0]->longitud)) {echo htmlspecialchars($rows[0]->longitud);} ?>" />
             <!--submit button-->
             <input type ="submit" name="save" id="save" value="Guardar">
 

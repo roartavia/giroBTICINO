@@ -4,18 +4,54 @@
         echo $newLocation;
         exit;
     }
+    $paisCuenta = '';
+    $current_user = wp_get_current_user();
+    $lastName = $current_user->user_lastname;
+    if (strpos($lastName, '-CR-') !== false) {
+        $paisCuenta = 'Costa Rica';
+    } else {
+        $paisCuenta = 'Guatemala';
+    }
+    echo "Su cuenta pertenece a ".$paisCuenta."<br>";
 ?>
 <form method="post">
-    <h1 class='label'>Editar cuenta existente</h1>
-    <input type ="submit" name="edit" id="edit" value="Editar">
-    <h1 class='label margin_top'>Crear nueva cuenta</h1>
-    <input type ="submit" name="create" id="create" value="Crear">
+    <div class="rowDiv">
+        <div class="columnDiv">
+            <h1 class='label_title'>Cuentas</h1>
+            <h1 class='label'>Editar cuenta existente</h1>
+            <input type ="submit" name="editarCuenta" id="editarCuenta" value="Editar">
+            <h1 class='label margin_top'>Crear nueva cuenta</h1>
+            <input type ="submit" name="createCuenta" id="createCuenta" value="Crear">
+        </div>
+        <div class="columnDiv">
+            <h1 class='label_title'>Contactos</h1>
+            <h1 class='label'>Editar contacto existente</h1>
+            <input type ="submit" name="editarContacto" id="editarContacto" value="Editar">
+            <h1 class='label margin_top'>Crear nuevo contacto</h1>
+            <input type ="submit" name="createContacto" id="createContacto" value="Crear">
+        </div>
+        <div class="columnDiv">
+            <h1 class='label_title'>Bitacora</h1>
+            <h1 class='label'>Crear bitacora</h1>
+            <input type ="submit" name="crearBitacora" id="crearBitacora" value="Crear">
+        </div>
+    </div>
 </form>
 <?php
-    if(isset($_POST['edit'])) {
+    if(isset($_POST['editarCuenta'])) {
         echo '<script>window.location.href = "http://girobticino.com/seleccionarcuenta/";</script>';
     }
-    if(isset($_POST['create'])) {
+    if(isset($_POST['createCuenta'])) {
         echo '<script>window.location.href = "http://girobticino.com/crearcuenta/";</script>';
     }
+    if(isset($_POST['editarContacto'])) {
+        echo '<script>window.location.href = "http://girobticino.com/seleccionarcontacto/";</script>';
+    }
+    if(isset($_POST['createContacto'])) {
+        echo '<script>window.location.href = "http://girobticino.com/crearcontacto/";</script>';
+    }
+    if(isset($_POST['createBitacora'])) {
+        echo '<script>window.location.href = "http://girobticino.com/crearbitacora/";</script>';
+    }
+
 ?>
