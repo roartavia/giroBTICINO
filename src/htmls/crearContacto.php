@@ -6,10 +6,6 @@
         }
         global $wpdb;
         $PAISES = ['Costa Rica', 'Guatemala'];
-        $PROVINCIAS_CR = ['San Jose', 'Cartago'];
-        $CANTON_CR = ['Goicoechea', 'Coronado'];
-        $PROVINCIAS_GUA = ['Guatemala','Alta Verapaz','Baja Verapaz'];
-        $CANTON_GUA = ['Palencia','Chinautla','San Pedro Ayampuc','Mixco','San Pedro Sacatepéquez'];
     ?>
     <html>
         <body>
@@ -46,7 +42,8 @@
                 <h1 class='label'>Correo</h1>
                 <input name='correo' placeholder='Correo' class='text_field' value="" />
                 <h1 class='label'>Pais</h1>
-                <select name='pais'>
+                <select id='pais' name='pais' onchange="onChangePais()">
+                    <option value=''>Seleccione su pais</option>
                     <?php
                         $countRows = sizeof($PAISES);
                         for ($i = 0; $i < $countRows; $i++) {
@@ -56,24 +53,10 @@
                     ?>
                 <select>
                 <h1 class='label'>Provincia / Departamento / Distrito</h1>
-                <select name='provincia'>
-                    <?php
-                        $countRows = sizeof($PROVINCIAS_CR);
-                        for ($i = 0; $i < $countRows; $i++) {
-                            $nombre = $PROVINCIAS_CR[$i];
-                            echo "<option value='$nombre'>$nombre</option>";
-                        }
-                    ?>
+                <select name='provincia' id='provincia' onchange="onChangeProvincia()">
                 <select>
                 <h1 class='label'>Canton</h1>
-                <select name='canton'>
-                    <?php
-                        $countRows = sizeof($CANTON_CR);
-                        for ($i = 0; $i < $countRows; $i++) {
-                            $nombre = $CANTON_CR[$i];
-                            echo "<option value='$nombre'>$nombre</option>";
-                        }
-                    ?>
+                <select name='canton' id='canton'>
                 <select>
                 <h1 class='label'>Zona</h1>
                 <input name='zona' placeholder='Zona' class='text_field' value="" />
