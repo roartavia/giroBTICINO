@@ -6,10 +6,14 @@
         exit;
     }
     global $wpdb;
-    $PROVINCIAS_CR = ['San Jose', 'Cartago'];
-    $CANTON_CR = ['Goicoechea', 'Coronado'];
-    $PROVINCIAS_GUA = ['Guatemala','Alta Verapaz','Baja Verapaz'];
-    $CANTON_GUA = ['Palencia','Chinautla','San Pedro Ayampuc','Mixco','San Pedro Sacatepéquez'];
+    $paisCuenta = '';
+    $current_user = wp_get_current_user();
+    $lastName = $current_user->user_lastname;
+    if (strpos($lastName, '-CR-') !== false) {
+        $paisCuenta = 'Costa Rica';
+    } else {
+        $paisCuenta = 'Guatemala';
+    }
 ?>
 <html>
     <body>
@@ -25,55 +29,22 @@
             <h1 class='label'>Sitio Web</h1>
             <input name='sitio_web' placeholder='Sitio Web' class='text_field' value="" />
             <h1 class='label'>País físico</h1>
-            <select name='pais'>
-                    <option value='Guatemala'>Guatemala</option>
-                    <option value='Costa Rica'>Costa Rica</option>
+            <select id='pais' name='pais' onchange="onChangePais()">
+                <option value=''>Seleccione su pais</option>
+                <?php
+                    echo "<option value='$paisCuenta'>$paisCuenta</option>";
+                ?>
             <select>
             <h1 class='label'>Provincia / Departamento físico</h1>
-            <select name='provincia'>
-                <?php
-                    $paisSelected = $_GET['pais'];
-                    echo $paisSelected;
-                    if ($paisSelected=='Costa Rica') {
-                        $countRows = sizeof($PROVINCIAS_CR);
-                        for ($i = 0; $i < $countRows; $i++) {
-                            $nombre = $PROVINCIAS_CR[$i];
-                            echo "<option value='$nombre'>$nombre</option>";
-                        }
-                    } else {
-                        $countRows = sizeof($PROVINCIAS_GUA);
-                        for ($i = 0; $i < $countRows; $i++) {
-                            $nombre = $PROVINCIAS_GUA[$i];
-                            echo "<option value='$nombre'>$nombre</option>";
-                        }
-                    }
-                ?>
+            <select name='provincia' id='provincia' onchange="onChangeProvincia()">
             </select>
-            <h1 class='label'>Cantón / Muncicipio / Cabecera físico</h1>
-            <select name='canton'>
-                <?php
-                    $paisSelected = $_GET['pais'];
-                    echo $paisSelected;
-                    if ($paisSelected=='Costa Rica') {
-                        $countRows = sizeof($CANTON_CR);
-                        for ($i = 0; $i < $countRows; $i++) {
-                            $nombre = $CANTON_CR[$i];
-                            echo "<option value='$nombre'>$nombre</option>";
-                        }
-                    } else {
-                        $countRows = sizeof($CANTON_GUA);
-                        for ($i = 0; $i < $countRows; $i++) {
-                            $nombre = $CANTON_GUA[$i];
-                            echo "<option value='$nombre'>$nombre</option>";
-                        }
-                    }
-                ?>
+            <h1 class='label'>Cantón / Municipio / Cabecera físico</h1>
+            <select name='canton' id='canton'>
             </select>
             <h1 class='label'>Zona / Distrito físico</h1>
             <input name='zona' placeholder='Zona' class='text_field' value="" />
             <h1 class='label'>Dirección física</h1>
             <input name='direccion' placeholder='Direccion' class='text_field' value="" />
-
             <h1 class='label'>Lineas disponibles Bticino</h1>
             <ul class='dropdown_list'>
                 <li id='selector' class='text_field'>Click para seleccionar las opciones</li>
@@ -101,7 +72,45 @@
                 <li class='checkbox hidden'><input type="checkbox" name="ckbx_DLPS" value="DLPS"/>DLP-S</li>
                 <li class='checkbox hidden'><input type="checkbox" name="ckbx_DLP" value="DLP"/>DLP</li>
             </ul>
-
+            <h1 class='label'>Competencia</h1>
+            <ul class='dropdown_list'>
+                <li id='selectorCompetencia' class='text_field'>Click para seleccionar las opciones</li>
+                <li class='checkboxCompetencia hidden'><strong>ACCESORIOS ELECTRICOS</strong></li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_ADORNE" value="ADORNE"/>ADORNE</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_LIVINGLIGHT" value="LIVINGLIGHT"/>LIVING LIGHT</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_MATIX" value="MATIX"/>MÁTIX</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_MAGIC" value="MAGIC"/>MAGIC</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_MODUSSTYLE" value="MODUSSTYLE"/>MODUS STYLE</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DOMINOSENCIA" value="DOMINOSENCIA"/>DOMINO SENCIA</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DOMINOAVANT" value="DOMINOAVANT"/>DOMINO AVANT</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_OVAL" value="OVAL"/>OVAL</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_PASSSEYMOUR" value="PASSSEYMOUR"/>PASS& SEYMOUR</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_IDROBOARD" value="IDROBOARD"/>IDROBOARD</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_TAPAUNIVERSAL" value="TAPAUNIVERSAL"/>TAPA UNIVERSAL</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_WIREMOLD" value="WIREMOLD"/>WIREMOLD</li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_ONQ" placeholder="" value=""/></li>
+                <li class='checkboxCompetencia hidden'><strong>INTERCOMUNICADORES</strong></li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_BTDIN" value="BTDIN"/>BTDIN</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_TIVEN" value="TIVEN"/>TIVEN</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_ROTOMA" value="ROTOMA"/>ROTOMA</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_INTERCOMUNICADORES" value="INTERCOMUNICADORES"/>INTERCOMUNICADORES</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_CALOTA" value="CALOTA"/>CALOTA CON BREAKER</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_TIMBRES" value="TIMBRES"/>TIMBRES</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_TIMBRESINALAMBRICOS" value="TIMBRESINALAMBRICOS"/>TIMBRES INALAMBRICOS</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_INTERLINK" value="INTERLINK"/>INTERLINK</li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_DLPS" placeholder="" value=""/></li>
+                <li class='checkboxCompetencia hidden'><strong>TABLEROS</strong></li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DLP" value="DLP"/>DLP</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DLP" value="DLP"/>DLP</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DLP" value="DLP"/>DLP</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DLP" value="DLP"/>DLP</li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_DLP" placeholder="" value=""/></li>
+                <li class='checkboxCompetencia hidden'><strong>CANALIZACIÓN</strong></li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DLP" value="DLP"/>DLP</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DLP" value="DLP"/>DLP</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DLP" value="DLP"/>DLP</li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_DLP" placeholder="" value=""/></li>
+            </ul>
             <h1 class='label'>Descripción</h1>
             <input name='descripcion' placeholder='Descripcion' class='text_field' value="" />
             <input type ="button" name="getLocation" id="getLocation" value="Traer mi ubicacion"/>

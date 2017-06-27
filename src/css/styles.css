@@ -50,6 +50,10 @@
     list-style: none;
 }
 
+.checkboxCompetencia {
+    list-style: none;
+}
+
 .hidden { display: none !important; }
 .shown {display: block !important; }
 

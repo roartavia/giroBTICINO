@@ -9,6 +9,14 @@
         $idCuenta = $_GET['id'];
     }
     global $wpdb;
+    $paisCuenta = '';
+    $current_user = wp_get_current_user();
+    $lastName = $current_user->user_lastname;
+    if (strpos($lastName, '-CR-') !== false) {
+        $paisCuenta = 'Costa Rica';
+    } else {
+        $paisCuenta = 'Guatemala';
+    }
     $sqlSelectFromCuentas = 'select * from cuentas where id='.$idCuenta;
     $rows = $wpdb->get_results($sqlSelectFromCuentas);
 ?>
@@ -26,11 +34,18 @@
             <h1 class='label'>Sitio Web</h1>
             <input name='sitio_web' placeholder='Sitio Web' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->sitioWeb);} ?>" />
             <h1 class='label'>País físico</h1>
-            <input name='pais' placeholder='Pais' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->paisFisico);} ?>" />
+            <select id='pais' name='pais' onchange="onChangePais()">
+                <option value=''>Seleccione su pais</option>
+                <?php
+                    echo "<option value='$paisCuenta'>$paisCuenta</option>";
+                ?>
+            <select>
             <h1 class='label'>Provincia / Departamento físico</h1>
-            <input name='provincia' placeholder='Provincia' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->provincia);} ?>" />
-            <h1 class='label'>Cantón / Muncicipio / Cabecera físico</h1>
-            <input name='canton' placeholder='Canton' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->canton);} ?>" />
+            <select name='provincia' id='provincia' onchange="onChangeProvincia()">
+            </select>
+            <h1 class='label'>Cantón / Municipio / Cabecera físico</h1>
+            <select name='canton' id='canton'>
+            </select>
             <h1 class='label'>Zona / Distrito físico</h1>
             <input name='zona' placeholder='Zona' class='text_field' value="<?php if(isset($rows[0]->zona)) {echo htmlspecialchars($rows[0]->zona);} ?>" />
             <h1 class='label'>Dirección física</h1>

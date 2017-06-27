@@ -16,6 +16,26 @@ CREATE TABLE contactos (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE bitacoras (
+    id int NOT NULL AUTO_INCREMENT,
+    fecha date,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE lineasXbitacoras (
+    id int NOT NULL AUTO_INCREMENT,
+    fkBitacoras int,
+    nombre varchar(255),
+    apellido varchar(255),
+    telefono varchar(255),
+    correo varchar(255),
+    producto varchar(255),
+    unidades varchar(255),
+    monto varchar(255),
+    premio varchar(255),
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE perfilContactoCargo (
     id int NOT NULL AUTO_INCREMENT,
     nombre varchar(255),

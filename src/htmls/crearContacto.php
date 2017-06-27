@@ -5,7 +5,14 @@
             exit;
         }
         global $wpdb;
-        $PAISES = ['Costa Rica', 'Guatemala'];
+        $paisCuenta = '';
+        $current_user = wp_get_current_user();
+        $lastName = $current_user->user_lastname;
+        if (strpos($lastName, '-CR-') !== false) {
+            $paisCuenta = 'Costa Rica';
+        } else {
+            $paisCuenta = 'Guatemala';
+        }
     ?>
     <html>
         <body>
@@ -33,23 +40,19 @@
                         for ($i = 0; $i < $countRows; $i++) {
                             $nombre = htmlspecialchars($selectPerfiles[$i]->nombre);
                             $id = htmlspecialchars($selectPerfiles[$i]->id);
-                            echo "<option value='$id'>$nombre</option>";
+                            echo "<option value='$nombre'>$nombre</option>";
                         }
                     ?>
                 <select>
                 <h1 class='label'>Telefono</h1>
                 <input name='telefono' placeholder='Telefono' class='text_field' value="" />
                 <h1 class='label'>Correo</h1>
-                <input name='correo' placeholder='Correo' class='text_field' value="" />
+                <input name='correo' placeholder='Correo' class='text_field' type='email' value=""/>
                 <h1 class='label'>Pais</h1>
                 <select id='pais' name='pais' onchange="onChangePais()">
                     <option value=''>Seleccione su pais</option>
                     <?php
-                        $countRows = sizeof($PAISES);
-                        for ($i = 0; $i < $countRows; $i++) {
-                            $nombre = $PAISES[$i];
-                            echo "<option value='$nombre'>$nombre</option>";
-                        }
+                        echo "<option value='$paisCuenta'>$paisCuenta</option>";
                     ?>
                 <select>
                 <h1 class='label'>Provincia / Departamento / Distrito</h1>

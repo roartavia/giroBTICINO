@@ -158,6 +158,23 @@
                 };
             }
 
+            var selectorCompetencia = document.getElementById("selectorCompetencia");
+            if(selectorCompetencia) {
+                selectorCompetencia.onclick = function() {
+                    var checkboxes = document.getElementsByClassName("checkboxCompetencia");
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        var element = checkboxes[i];
+                        if (element.classList.contains('hidden')) {
+                            element.classList.remove("hidden");
+                            element.classList.add("shown");
+                        } else {
+                            element.classList.remove("shown");
+                            element.classList.add("hidden");
+                        }
+                    }
+                };
+            }
+
             var closeItems = document.getElementById("close_btn");
             if(closeItems) {
                 closeItems.onclick = function () {
