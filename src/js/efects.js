@@ -104,7 +104,7 @@
     function onChangePais() {
         var paisSelected = document.getElementById("pais").value;
         var lstProvincias = provinciasPorPais[paisSelected];
-        var newOptions = "<option value=' '>Seleccione su provincia</option>";
+        var newOptions = "<option value=''>Seleccione su provincia</option>";
         for (var i = 0; i < lstProvincias.length; i++) {
             newOptions += "<option value='" + lstProvincias[i] + "'>" + lstProvincias[i] + "</option>";
         }
@@ -114,7 +114,7 @@
     function onChangeProvincia() {
         var provinciaSelected = document.getElementById("provincia").value;
         var lstCantones = regionesPorProvincia[provinciaSelected];
-        var newOptions = "<option value=' '>Seleccione su canton</option>";
+        var newOptions = "<option value=''>Seleccione su canton</option>";
         for (var i = 0; i < lstCantones.length; i++) {
             newOptions += "<option value='" + lstCantones[i] + "'>" + lstCantones[i] + "</option>";
         }
@@ -136,6 +136,10 @@
         latitud.value = position.coords.latitude;
         longitud.value = position.coords.longitude;
 
+    }
+
+    function onClickContinuar() {
+        window.location.href = "http://girobticino.com/menuprincipal/";
     }
 
     (function() {
