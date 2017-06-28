@@ -19,6 +19,14 @@
     }
     $sqlSelectFromCuentas = 'select * from cuentas where id='.$idCuenta;
     $rows = $wpdb->get_results($sqlSelectFromCuentas);
+    $tiposCuentas = ['Usuario Final','Canal','Instalador','Especificador e Influenciador','Inversionista','Distribuidor QAD'];
+    $subtiposCuentas = ['Usuario Final','Almacen electrico detallista','Ferreteria','Constructora Civil',
+    'Distribuidor BT','Diseñador Electrico','Instalador General','Arquitecto',
+    'Decorador','Home center','Urbanizadora/Desarrolladora','Integrador - Otros',
+    'Tecnico Electricista','Mayorista','Contratista Electrico','Instituciones Financieras o Bancos',
+    'Hoteles','Institucion Pública o Gubernamental','Integrador - Home Automation',
+    'Inversionista','Integrador - Redes','Hospitales','Maestro de Obra',
+    'Tablerista','Fabrica','DataCenter','Ferreteria Paquete','COMODIN'];
 ?>
 <html>
     <body>
@@ -26,13 +34,49 @@
             <h1 class='label'>Nombre de la cuenta</h1>
             <input name='nombre' placeholder='Nombre de la cuenta' class='text_field' value="<?php if(isset($rows[0]->nombre)) {echo htmlspecialchars($rows[0]->nombre);} ?>" />
             <h1 class='label'>Tipo</h1>
-            <input name='tipo' placeholder='Tipo' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->tipo);} ?>" />
+            <select name='tipo' required>
+                <option value=''>Seleccione el tipo</option>
+                <?php
+                    $countRows = sizeof($tiposCuentas);
+                    for ($i = 0; $i < $countRows; $i++) {
+                        $isSelected = false;
+                        if(isset($rows[0]->tipo)) {
+                            $tipoFromDB = htmlspecialchars($rows[0]->tipo);
+                            if($tiposCuentas[$i] == $tipoFromDB) {
+                                echo "<option value='$tiposCuentas[$i]' selected>".$tiposCuentas[$i]."</option>";
+                            } else {
+                                echo "<option value='$tiposCuentas[$i]'>".$tiposCuentas[$i]."</option>";
+                            }
+                        } else {
+                            echo "<option value='$tiposCuentas[$i]'>".$tiposCuentas[$i]."</option>";
+                        }
+                    }
+                ?>
+            </select>
             <h1 class='label'>Subtipo</h1>
-            <input name='sub_tipo' placeholder='Subtipo' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->subtipo);} ?>" />
+            <select name='sub_tipo' required>
+                <option value=''>Seleccione el tipo</option>
+                <?php
+                    $countRows = sizeof($subtiposCuentas);
+                    for ($i = 0; $i < $countRows; $i++) {
+                        $isSelected = false;
+                        if(isset($rows[0]->subtipo)) {
+                            $tipoFromDB = htmlspecialchars($rows[0]->subtipo);
+                            if($subtiposCuentas[$i] == $tipoFromDB) {
+                                echo "<option value='$subtiposCuentas[$i]' selected>".$subtiposCuentas[$i]."</option>";
+                            } else {
+                                echo "<option value='$subtiposCuentas[$i]'>".$subtiposCuentas[$i]."</option>";
+                            }
+                        } else {
+                            echo "<option value='$subtiposCuentas[$i]'>".$subtiposCuentas[$i]."</option>";
+                        }
+                    }
+                ?>
+            </select>
             <h1 class='label'>Teléfono</h1>
-            <input name='telefono' placeholder='Telefono' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->telefono);} ?>" />
+            <input name='telefono' placeholder='Telefono' class='text_field' value="<?php if(isset($rows[0]->telefono)) {echo htmlspecialchars($rows[0]->telefono);} ?>" />
             <h1 class='label'>Sitio Web</h1>
-            <input name='sitio_web' placeholder='Sitio Web' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->sitioWeb);} ?>" />
+            <input name='sitio_web' placeholder='Sitio Web' class='text_field' value="<?php if(isset($rows[0]->sitioWeb)) {echo htmlspecialchars($rows[0]->sitioWeb);} ?>" />
             <h1 class='label'>País físico</h1>
             <select id='pais' name='pais' onchange="onChangePais()">
                 <option value=''>Seleccione su pais</option>
@@ -49,8 +93,7 @@
             <h1 class='label'>Zona / Distrito físico</h1>
             <input name='zona' placeholder='Zona' class='text_field' value="<?php if(isset($rows[0]->zona)) {echo htmlspecialchars($rows[0]->zona);} ?>" />
             <h1 class='label'>Dirección física</h1>
-            <input name='direccion' placeholder='Direccion' class='text_field' value="<?php if(isset($rows[0]->tipo)) {echo htmlspecialchars($rows[0]->direccion);} ?>" />
-
+            <input name='direccion' placeholder='Direccion' class='text_field' value="<?php if(isset($rows[0]->direccion)) {echo htmlspecialchars($rows[0]->direccion);} ?>" />
             <h1 class='label'>Lineas disponibles Bticino</h1>
             <ul class='dropdown_list'>
                 <li id='selector' class='text_field'>Click para seleccionar las opciones</li>
@@ -78,7 +121,45 @@
                 <li class='checkbox hidden'><input type="checkbox" name="ckbx_DLPS" value="DLPS" <?php echo (isset($rows[0]->DLPS) && $rows[0]->DLPS==1  ? 'checked' : '');?>/>DLP-S</li>
                 <li class='checkbox hidden'><input type="checkbox" name="ckbx_DLP" value="DLP" <?php echo (isset($rows[0]->DLP) && $rows[0]->DLP==1  ? 'checked' : '');?>/>DLP</li>
             </ul>
-
+            <h1 class='label'>Competencia</h1>
+            <ul class='dropdown_list'>
+                <li id='selectorCompetencia' class='text_field'>Click para seleccionar las opciones</li>
+                <li class='checkboxCompetencia hidden'><strong>ACCESORIOS ELECTRICOS</strong></li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Cooper" value="Cooper"/>Cooper</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Leviton" value="Leviton"/>Leviton</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Hubbel" value="Hubbel"/>Hubbel</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Conatel" value="Conatel"/>Conatel</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Sica" value="Sica"/>Sica</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Master" value="DOMINOSENCIA"/>DOMINO SENCIA</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Eagle" value="Eagle Centroamerica / Aguila"/>Eagle Centroamerica / Aguila</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Simon" value="Simon"/>Simon</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Vimar" value="Vimar"/>Vimar</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Voltech" value="Voltech"/>Voltech</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Teclastar" value="Teclastar"/>Teclastar</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_TJ" value="T&J"/>T&J</li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="txt_AccesoriosOtros" placeholder="Si son varios, separarlos por comas" value=""/></li>
+                <li class='checkboxCompetencia hidden'><strong>INTERCOMUNICADORES</strong></li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Kocom" value="Kocom"/>Kocom</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Commax" value="Commax"/>Commax</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Aiphone" value="Aiphone"/>Aiphone</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Yale" value="Yale"/>Yale</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Swann" value="Swann"/>Swann</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Steren" value="Steren"/>Steren</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_SLSystem" value="SL System"/>SL System</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_RL" value="RL"/>RL</li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_IntercomOtros" placeholder="Si son varios, separarlos por comas" value=""/></li>
+                <li class='checkboxCompetencia hidden'><strong>TABLEROS</strong></li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Schneider/Square D" value="Schneider/Square D"/>Schneider/Square D</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Eaton" value="Eaton/ Cutler Hammer"/>Eaton/ Cutler Hammer</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_GeneralElectric" value="General Electric (líder GT)"/>General Electric (líder GT)</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Siemens" value="Siemens"/>Siemens</li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_TablerosOtros" placeholder="Si son varios, separarlos por comas" value=""/></li>
+                <li class='checkboxCompetencia hidden'><strong>CANALIZACIÓN</strong></li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_EagleJS" value="Eagle / JS"/>Eagle / JS</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DexsonSch" value="Dexson  Schneider"/>Dexson  Schneider</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_EagleEfapel" value="Eagle / Efapel"/>Eagle / Efapel</li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_CanalizacionOtros" placeholder="Si son varios, separarlos por comas" value=""/></li>
+            </ul>
             <h1 class='label'>Descripción</h1>
             <input name='descripcion' placeholder='Descripcion' class='text_field' value="<?php if(isset($rows[0]->descripcion)) {echo htmlspecialchars($rows[0]->descripcion);} ?>" />
             <input type ="button" name="getLocation" id="getLocation" value="Traer mi ubicacion"/>
