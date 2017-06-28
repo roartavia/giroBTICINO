@@ -88,13 +88,13 @@
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Conatel" value="Conatel"/>Conatel</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Sica" value="Sica"/>Sica</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Master" value="DOMINOSENCIA"/>DOMINO SENCIA</li>
-                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Eagle" value="Eagle Centroamerica / Aguila"/>Eagle Centroamerica / Aguila</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_EagleCentroamerica" value="Eagle Centroamerica / Aguila"/>Eagle Centroamerica / Aguila</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Simon" value="Simon"/>Simon</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Vimar" value="Vimar"/>Vimar</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Voltech" value="Voltech"/>Voltech</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Teclastar" value="Teclastar"/>Teclastar</li>
-                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_TJ" value="T&J"/>T&J</li>
-                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="txt_AccesoriosOtros" placeholder="Si son varios, separarlos por comas" value=""/></li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_TandJ" value="T&J"/>T&J</li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="OtroAcceElectrico" placeholder="Si son varios, separarlos por comas" value=""/></li>
                 <li class='checkboxCompetencia hidden'><strong>INTERCOMUNICADORES</strong></li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Kocom" value="Kocom"/>Kocom</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Commax" value="Commax"/>Commax</li>
@@ -104,18 +104,18 @@
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Steren" value="Steren"/>Steren</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_SLSystem" value="SL System"/>SL System</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_RL" value="RL"/>RL</li>
-                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_IntercomOtros" placeholder="Si son varios, separarlos por comas" value=""/></li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="OtroIntercomunicador" placeholder="Si son varios, separarlos por comas" value=""/></li>
                 <li class='checkboxCompetencia hidden'><strong>TABLEROS</strong></li>
-                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Schneider/Square D" value="Schneider/Square D"/>Schneider/Square D</li>
-                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Eaton" value="Eaton/ Cutler Hammer"/>Eaton/ Cutler Hammer</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_SchneiderSquareD" value="Schneider/Square D"/>Schneider/Square D</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_EatonCutlerHammer" value="Eaton/ Cutler Hammer"/>Eaton/ Cutler Hammer</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_GeneralElectric" value="General Electric (líder GT)"/>General Electric (líder GT)</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Siemens" value="Siemens"/>Siemens</li>
-                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_TablerosOtros" placeholder="Si son varios, separarlos por comas" value=""/></li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="OtroTablero" placeholder="Si son varios, separarlos por comas" value=""/></li>
                 <li class='checkboxCompetencia hidden'><strong>CANALIZACIÓN</strong></li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_EagleJS" value="Eagle / JS"/>Eagle / JS</li>
-                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DexsonSch" value="Dexson  Schneider"/>Dexson  Schneider</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_DexsonSchneider" value="Dexson  Schneider"/>Dexson  Schneider</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_EagleEfapel" value="Eagle / Efapel"/>Eagle / Efapel</li>
-                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="ckbx_CanalizacionOtros" placeholder="Si son varios, separarlos por comas" value=""/></li>
+                <li class='checkboxCompetencia hidden'>Otro: <input type="text" name="OtroCanalizacion" placeholder="Si son varios, separarlos por comas" value=""/></li>
             </ul>
             <h1 class='label'>Descripción</h1>
             <input name='descripcion' placeholder='Descripcion' class='text_field' value="" required/>
@@ -185,12 +185,50 @@
                 $INTERLINK=isset($_POST['ckbx_INTERLINK']) ? 1 : 0;
                 $DLPS=isset($_POST['ckbx_DLPS']) ? 1 : 0;
                 $DLP=isset($_POST['ckbx_DLP']) ? 1 : 0;
+                $Cooper=isset($_POST['ckbx_Cooper']) ? 1 : 0;
+                $Leviton=isset($_POST['ckbx_Leviton']) ? 1 : 0;
+                $Hubbel=isset($_POST['ckbx_Hubbel']) ? 1 : 0;
+                $Conatel=isset($_POST['ckbx_Conatel']) ? 1 : 0;
+                $Sica=isset($_POST['ckbx_Sica']) ? 1 : 0;
+                $Master=isset($_POST['ckbx_Master']) ? 1 : 0;
+                $EagleCentroamerica=isset($_POST['ckbx_EagleCentroamerica']) ? 1 : 0;
+                $Simon=isset($_POST['ckbx_Simon']) ? 1 : 0;
+                $Vimar=isset($_POST['ckbx_Vimar']) ? 1 : 0;
+                $Voltech=isset($_POST['ckbx_Voltech']) ? 1 : 0;
+                $Teclastar=isset($_POST['ckbx_Teclastar']) ? 1 : 0;
+                $TandJ=isset($_POST['ckbx_TandJ']) ? 1 : 0;
+                $OtroAcceElectrico=isset($_POST['OtroAcceElectrico']) ? $_POST['OtroAcceElectrico'] : ' ';
+                $Kocom=isset($_POST['ckbx_Kocom']) ? 1 : 0;
+                $Commax=isset($_POST['ckbx_Commax']) ? 1 : 0;
+                $Aiphone=isset($_POST['ckbx_Aiphone']) ? 1 : 0;
+                $Yale=isset($_POST['ckbx_Yale']) ? 1 : 0;
+                $Swann=isset($_POST['ckbx_Swann']) ? 1 : 0;
+                $Steren=isset($_POST['ckbx_Steren']) ? 1 : 0;
+                $SLSystem=isset($_POST['ckbx_SLSystem']) ? 1 : 0;
+                $RL=isset($_POST['ckbx_RL']) ? 1 : 0;
+                $OtroIntercomunicador=isset($_POST['OtroIntercomunicador']) ? $_POST['OtroIntercomunicador'] : ' ';
+                $SchneiderSquareD=isset($_POST['ckbx_SchneiderSquareD']) ? 1 : 0;
+                $EatonCutlerHammer=isset($_POST['ckbx_EatonCutlerHammer']) ? 1 : 0;
+                $GeneralElectric=isset($_POST['ckbx_GeneralElectric']) ? 1 : 0;
+                $Siemens=isset($_POST['ckbx_Siemens']) ? 1 : 0;
+                $OtroTablero=isset($_POST['OtroTablero']) ? $_POST['OtroTablero'] : ' ';
+                $EagleJS=isset($_POST['ckbx_EagleJS']) ? 1 : 0;
+                $DexsonSchneider=isset($_POST['ckbx_DexsonSchneider']) ? 1 : 0;
+                $EagleEfapel=isset($_POST['ckbx_EagleEfapel']) ? 1 : 0;
+                $OtroCanalizacion=isset($_POST['OtroCanalizacion']) ? $_POST['OtroCanalizacion'] : ' ';
                 $sql = "INSERT INTO cuentas (nombre,tipo,subtipo,telefono,sitioWeb,paisFisico,provincia,canton,zona,direccion,latitud,longitud,descripcion,".
                 "ADORNE,LIVINGLIGHT,MATIX,MAGIC,MODUSSTYLE,DOMINOSENCIA,DOMINOAVANT,OVAL,PASSSEYMOUR,IDROBOARD,TAPAUNIVERSAL,WIREMOLD,ONQ,BTDIN,TIVEN,ROTOMA,".
-                "INTERCOMUNICADORES,CALOTACONBREAKER,TIMBRES,TIMBRESINALAMBRICOS,INTERLINK,DLPS,DLP) ".
+                "INTERCOMUNICADORES,CALOTACONBREAKER,TIMBRES,TIMBRESINALAMBRICOS,INTERLINK,DLPS,DLP,".
+                "Cooper,Leviton,Hubbel,Conatel,Sica,Master,EagleCentroamerica,Simon,Vimar,Voltech,Teclastar,TandJ,OtroAcceElectrico,".
+                "Kocom,Commax,Aiphone,Yale,Swann,Steren,SLSystem,RL,OtroIntercomunicador,SchneiderSquareD,EatonCutlerHammer,GeneralElectric,".
+                "Siemens,OtroTablero,EagleJS,DexsonSchneider,EagleEfapel,OtroCanalizacion) ".
                 "VALUES ('$nombre','$tipo','$subtipo','$telefono','$sitioWeb','$paisFisico','$provincia','$canton','$zona','$direccion','$latitud','$longitud','$descripcion',".
                 "$ADORNE,$LIVINGLIGHT,$MATIX,$MAGIC,$MODUSSTYLE,$DOMINOSENCIA,$DOMINOAVANT,$OVAL,$PASSSEYMOUR,$IDROBOARD,$TAPAUNIVERSAL,$WIREMOLD,$ONQ,$BTDIN,$TIVEN,$ROTOMA,".
-                "$INTERCOMUNICADORES,$CALOTACONBREAKER,$TIMBRES,$TIMBRESINALAMBRICOS,$INTERLINK,$DLPS,$DLP)";
+                "$INTERCOMUNICADORES,$CALOTACONBREAKER,$TIMBRES,$TIMBRESINALAMBRICOS,$INTERLINK,$DLPS,$DLP,".
+                "'$Cooper','$Leviton','$Hubbel','$Conatel','$Sica','$Master','$EagleCentroamerica','$Simon','$Vimar','$Voltech',".
+                "'$Teclastar','$TandJ','$OtroAcceElectrico','$Kocom','$Commax','$Aiphone','$Yale','$Swann',".
+                "'$Steren','$SLSystem','$RL','$OtroIntercomunicador','$SchneiderSquareD','$EatonCutlerHammer','$GeneralElectric','$Siemens',".
+                "'$OtroTablero','$EagleJS','$DexsonSchneider','$EagleEfapel','$OtroCanalizacion')";
                 $newRow = $wpdb->query($sql);
                 if($newRow) {
                     $message = "Cuenta creada correctamente.";
