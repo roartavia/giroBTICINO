@@ -18,13 +18,6 @@ CREATE TABLE contactos (
 
 CREATE TABLE bitacoras (
     id int NOT NULL AUTO_INCREMENT,
-    fecha date,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE lineasXbitacoras (
-    id int NOT NULL AUTO_INCREMENT,
-    fkBitacoras int,
     nombre varchar(255),
     apellido varchar(255),
     telefono varchar(255),
