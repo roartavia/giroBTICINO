@@ -104,21 +104,25 @@
     function onChangePais() {
         var paisSelected = document.getElementById("pais").value;
         var lstProvincias = provinciasPorPais[paisSelected];
-        var newOptions = "<option value=''>Seleccione su provincia</option>";
-        for (var i = 0; i < lstProvincias.length; i++) {
-            newOptions += "<option value='" + lstProvincias[i] + "'>" + lstProvincias[i] + "</option>";
+        if(lstProvincias) {
+            var newOptions = "<option value=''>Seleccione su provincia</option>";
+            for (var i = 0; i < lstProvincias.length; i++) {
+                newOptions += "<option value='" + lstProvincias[i] + "'>" + lstProvincias[i] + "</option>";
+            }
+            document.getElementById("provincia").innerHTML = newOptions;
         }
-        document.getElementById("provincia").innerHTML = newOptions;
     }
 
     function onChangeProvincia() {
         var provinciaSelected = document.getElementById("provincia").value;
         var lstCantones = regionesPorProvincia[provinciaSelected];
-        var newOptions = "<option value=''>Seleccione su canton</option>";
-        for (var i = 0; i < lstCantones.length; i++) {
-            newOptions += "<option value='" + lstCantones[i] + "'>" + lstCantones[i] + "</option>";
+        if (lstCantones) {
+            var newOptions = "<option value=''>Seleccione su canton</option>";
+            for (var i = 0; i < lstCantones.length; i++) {
+                newOptions += "<option value='" + lstCantones[i] + "'>" + lstCantones[i] + "</option>";
+            }
+            document.getElementById("canton").innerHTML = newOptions;
         }
-        document.getElementById("canton").innerHTML = newOptions;
     }
 
     function getLocation() {
@@ -196,6 +200,36 @@
                 btnGetLocation.onclick = function () {
                         getLocation();
                 }
+            }
+
+            var paisStr = document.getElementById("pais").value;
+            var provinciaStr = document.getElementById("provincia").value;
+            var cantonStr = document.getElementById("canton").value;
+
+            var lstProvincias = provinciasPorPais[paisStr];
+            if(lstProvincias) {
+                var newOptions = "<option value=''>Seleccione su provincia</option>";
+                for (var i = 0; i < lstProvincias.length; i++) {
+                    if(lstProvincias[i]==provinciaStr) {
+                        newOptions += "<option value='" + lstProvincias[i] + "' selected>" + lstProvincias[i] + "</option>";
+                    } else {
+                        newOptions += "<option value='" + lstProvincias[i] + "'>" + lstProvincias[i] + "</option>";
+                    }
+                }
+                document.getElementById("provincia").innerHTML = newOptions;
+            }
+
+            var lstCantones = regionesPorProvincia[provinciaStr];
+            if(lstCantones) {
+                var newOptions = "<option value=''>Seleccione su provincia</option>";
+                for (var i = 0; i < lstCantones.length; i++) {
+                    if(lstCantones[i]==cantonStr) {
+                        newOptions += "<option value='" + lstCantones[i] + "' selected>" + lstCantones[i] + "</option>";
+                    } else {
+                        newOptions += "<option value='" + lstCantones[i] + "'>" + lstCantones[i] + "</option>";
+                    }
+                }
+                document.getElementById("canton").innerHTML = newOptions;
             }
         };
     })();

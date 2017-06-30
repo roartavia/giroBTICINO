@@ -30,8 +30,8 @@
             <input name='producto' placeholder='Producto' class='text_field' value="" required/>
             <h1 class='label'>Unidades</h1>
             <input name='unidades' placeholder='Unidades' class='text_field' value="" required/>
-            <h1 class='label'>Monton</h1>
-            <input name='monton' placeholder='Monto' class='text_field' value="" required/>
+            <h1 class='label'>Monto</h1>
+            <input name='monto' placeholder='Monto' class='text_field' value="" required/>
             <h1 class='label'>Premio</h1>
             <input name='premio' placeholder='Premio' class='text_field' value="" required/>
 

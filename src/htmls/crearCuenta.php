@@ -87,7 +87,7 @@
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Hubbel" value="Hubbel"/>Hubbel</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Conatel" value="Conatel"/>Conatel</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Sica" value="Sica"/>Sica</li>
-                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Master" value="DOMINOSENCIA"/>DOMINO SENCIA</li>
+                <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Master" value="Master"/>Master</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_EagleCentroamerica" value="Eagle Centroamerica / Aguila"/>Eagle Centroamerica / Aguila</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Simon" value="Simon"/>Simon</li>
                 <li class='checkboxCompetencia hidden'><input type="checkbox" name="ckbx_Vimar" value="Vimar"/>Vimar</li>
@@ -229,18 +229,27 @@
                 "'$Teclastar','$TandJ','$OtroAcceElectrico','$Kocom','$Commax','$Aiphone','$Yale','$Swann',".
                 "'$Steren','$SLSystem','$RL','$OtroIntercomunicador','$SchneiderSquareD','$EatonCutlerHammer','$GeneralElectric','$Siemens',".
                 "'$OtroTablero','$EagleJS','$DexsonSchneider','$EagleEfapel','$OtroCanalizacion')";
-                $newRow = $wpdb->query($sql);
-                if($newRow) {
-                    $message = "Cuenta creada correctamente.";
-                    echo "<script type='text/javascript'>document.getElementsByClassName('here')[0].style.display = 'block';</script>";
-                    echo "<script type='text/javascript'>document.getElementsByClassName('here')[1].style.display = 'block';</script>";
-                    //echo "<script type='text/javascript'>alert('$message');</script>";
-                    //echo '<script>window.location.href = "http://girobticino.com/menuprincipal/";</script>';
-                    //exit;
+
+                $sqlExisteNombre = "SELECT * FROM cuentas WHERE nombre='$nombre'";
+                $existeRows = $wpdb->get_results($sqlExisteNombre);
+                $cantidadRows = sizeof($existeRows);
+                if($cantidadRows > 0) {
+                    echo "<script type='text/javascript'>alert('Ese nombre de cuenta ya existe, no se pueden crear dos cuentas con el mismo nombre');</script>";
                 } else {
-                    $message = "Error creando la cuenta, intentelo de nuevo.";
-                    echo "<script type='text/javascript'>alert('$message');</script>";
+                    $newRow = $wpdb->query($sql);
+                    if($newRow) {
+                        $message = "Cuenta creada correctamente.";
+                        echo "<script type='text/javascript'>document.getElementsByClassName('here')[0].style.display = 'block';</script>";
+                        echo "<script type='text/javascript'>document.getElementsByClassName('here')[1].style.display = 'block';</script>";
+                        //echo "<script type='text/javascript'>alert('$message');</script>";
+                        //echo '<script>window.location.href = "http://girobticino.com/menuprincipal/";</script>';
+                        //exit;
+                    } else {
+                        $message = "Error creando la cuenta, intentelo de nuevo.";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                    }
                 }
+
             }
         ?>
     </body>

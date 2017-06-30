@@ -144,37 +144,3 @@ CREATE TABLE cuentas (
   OtroCanalizacion varchar(255),
   PRIMARY KEY (id)
 );
-
-
-
-Cooper
-Leviton
-Hubbel
-Conatel
-Sica
-Master
-EagleCentroamerica
-Simon
-Vimar
-Voltech
-Teclastar
-TandJ
-OtroAcceElectrico
-Kocom
-Commax
-Aiphone
-Yale
-Swann
-Steren
-SLSystem
-RL
-OtroIntercomunicador
-SchneiderSquareD
-EatonCutlerHammer
-GeneralElectric
-Siemens
-OtroTablero
-EagleJS
-DexsonSchneider
-EagleEfapel
-OtroCanalizacion
