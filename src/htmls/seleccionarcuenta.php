@@ -1,6 +1,6 @@
 <?php
     if ( ! is_user_logged_in() && ! is_page( 'login' ) ) {
-        $newLocation = '<script>window.location.href = "http://girobticino.com/";</script>';
+        $newLocation = '<script>window.location.href = "http://puntosbticino.com/";</script>';
         echo $newLocation;
         exit;
     }
@@ -18,7 +18,7 @@
     <select name="opcionesCuentas">
         <?php
             global $wpdb;
-            $rows = $wpdb->get_results("select id, nombre from cuentas where paisFisico='$paisCuenta'");
+            $rows = $wpdb->get_results("select id, nombre from cuentas where paisFisico='$paisCuenta' order by nombre");
             $countRows = sizeof($rows);
 
             for ($i = 0; $i < $countRows; $i++) {
@@ -34,7 +34,7 @@
     if(isset($_POST['edit']))
     {
         $idSelected =  $_POST['opcionesCuentas'];
-        $newLocation = '<script>window.location.href = "http://girobticino.com/editarcuenta/?id='.$idSelected.'";</script>';
+        $newLocation = '<script>window.location.href = "http://puntosbticino.com/editarcuenta/?id='.$idSelected.'";</script>';
         echo $newLocation;
     }
 ?>

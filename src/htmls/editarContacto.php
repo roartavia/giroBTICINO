@@ -1,6 +1,6 @@
 <?php
     if ( ! is_user_logged_in() && ! is_page( 'login' ) ) {
-        $newLocation = '<script>window.location.href = "http://girobticino.com/";</script>';
+        $newLocation = '<script>window.location.href = "http://puntosbticino.com/";</script>';
         echo $newLocation;
         exit;
     }
@@ -124,7 +124,7 @@
                     echo "<script type='text/javascript'>document.getElementsByClassName('here')[0].style.display = 'block';</script>";
                     echo "<script type='text/javascript'>document.getElementsByClassName('here')[1].style.display = 'block';</script>";
                     //echo "<script type='text/javascript'>alert('$message');</script>";
-                    //echo '<script>window.location.href = "http://girobticino.com/menuprincipal/";</script>';
+                    //echo '<script>window.location.href = "http://puntosbticino.com/menuprincipal/";</script>';
                     //exit;
                 } else {
                     $message = "Error editando la cuenta, intentelo de nuevo.";
@@ -132,7 +132,7 @@
                 }
             }
             if(isset($_POST['continuar'])) {
-                echo '<script>window.location.href = "http://girobticino.com/menuprincipal/";</script>';
+                echo '<script>window.location.href = "http://puntosbticino.com/menuprincipal/";</script>';
                 exit;
             }
         ?>

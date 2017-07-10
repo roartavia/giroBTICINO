@@ -1,6 +1,6 @@
 <?php
     if ( ! is_user_logged_in() && ! is_page( 'login' ) ) {
-        $newLocation = '<script>window.location.href = "http://girobticino.com/";</script>';
+        $newLocation = '<script>window.location.href = "http://puntosbticino.com/";</script>';
         echo $newLocation;
         exit;
     }
@@ -39,19 +39,19 @@
 </form>
 <?php
     if(isset($_POST['editarCuenta'])) {
-        echo '<script>window.location.href = "http://girobticino.com/seleccionarcuenta/";</script>';
+        echo '<script>window.location.href = "http://puntosbticino.com/seleccionarcuenta/";</script>';
     }
     if(isset($_POST['createCuenta'])) {
-        echo '<script>window.location.href = "http://girobticino.com/crearcuenta/";</script>';
+        echo '<script>window.location.href = "http://puntosbticino.com/crearcuenta/";</script>';
     }
     if(isset($_POST['editarContacto'])) {
-        echo '<script>window.location.href = "http://girobticino.com/seleccionarcontacto/";</script>';
+        echo '<script>window.location.href = "http://puntosbticino.com/seleccionarcontacto/";</script>';
     }
     if(isset($_POST['createContacto'])) {
-        echo '<script>window.location.href = "http://girobticino.com/crearcontacto/";</script>';
+        echo '<script>window.location.href = "http://puntosbticino.com/crearcontacto/";</script>';
     }
     if(isset($_POST['createBitacora'])) {
-        echo '<script>window.location.href = "http://girobticino.com/crearbitacora/";</script>';
+        echo '<script>window.location.href = "http://puntosbticino.com/crearbitacora/";</script>';
     }
 
 ?>

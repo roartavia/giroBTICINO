@@ -1,6 +1,6 @@
 <?php
     if ( ! is_user_logged_in() && ! is_page( 'login' ) ) {
-        $newLocation = '<script>window.location.href = "http://girobticino.com/";</script>';
+        $newLocation = '<script>window.location.href = "http://puntosbticino.com/";</script>';
         echo $newLocation;
         exit;
     }
@@ -53,7 +53,7 @@
     if(isset($_POST['edit']))
     {
         $idSelected =  $_POST['opcionesCuentas'];
-        $newLocation = '<script>window.location.href = "http://girobticino.com/editarcontacto/?id='.$idSelected.'";</script>';
+        $newLocation = '<script>window.location.href = "http://puntosbticino.com/editarcontacto/?id='.$idSelected.'";</script>';
         echo $newLocation;
     }
 ?>

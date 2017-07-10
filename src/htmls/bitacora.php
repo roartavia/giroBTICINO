@@ -1,7 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <?php
     if ( ! is_user_logged_in() && ! is_page( 'login' ) ) {
-        $newLocation = '<script>window.location.href = "http://girobticino.com/";</script>';
+        $newLocation = '<script>window.location.href = "http://puntosbticino.com/";</script>';
         echo $newLocation;
         exit;
     }

@@ -1,6 +1,6 @@
 <?php
     if ( ! is_user_logged_in() && ! is_page( 'login' ) ) {
-        $newLocation = '<script>window.location.href = "http://girobticino.com/";</script>';
+        $newLocation = '<script>window.location.href = "http://puntosbticino.com/";</script>';
         echo $newLocation;
         exit;
     }
@@ -122,7 +122,7 @@
                 }
             }
             /*if(isset($_POST['continuar'])) {
-                echo '<script>window.location.href = "http://girobticino.com/menuprincipal/";</script>';
+                echo '<script>window.location.href = "http://puntosbticino.com/menuprincipal/";</script>';
                 exit;
             }*/
         ?>

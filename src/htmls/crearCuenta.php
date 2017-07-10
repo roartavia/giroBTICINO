@@ -1,7 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <?php
     if ( ! is_user_logged_in() && ! is_page( 'login' ) ) {
-        $newLocation = '<script>window.location.href = "http://girobticino.com/";</script>';
+        $newLocation = '<script>window.location.href = "http://puntosbticino.com/";</script>';
         echo $newLocation;
         exit;
     }
@@ -22,8 +22,8 @@
             <input name='nombre' placeholder='Nombre de la cuenta' class='text_field' value="" required/>
             <h1 class='label'>Tipo</h1>
             <input name='tipo' placeholder='Tipo' class='text_field' value="Canal" readonly/>
-            <h1 class='label'>Subtipo</h1>
-            <select name='sub_tipo' required>
+            <h1 class='label' style="display:none">Subtipo</h1>
+            <select name='sub_tipo' style="display:none">
                 <option value=''>Seleccione el subtipo</option>
                 <option value='Especificador e influenciador'>Especificador e influenciador</option>
                 <option value='Instalador'>Instalador</option>
@@ -242,7 +242,7 @@
                         echo "<script type='text/javascript'>document.getElementsByClassName('here')[0].style.display = 'block';</script>";
                         echo "<script type='text/javascript'>document.getElementsByClassName('here')[1].style.display = 'block';</script>";
                         //echo "<script type='text/javascript'>alert('$message');</script>";
-                        //echo '<script>window.location.href = "http://girobticino.com/menuprincipal/";</script>';
+                        //echo '<script>window.location.href = "http://puntosbticino.com/menuprincipal/";</script>';
                         //exit;
                     } else {
                         $message = "Error creando la cuenta, intentelo de nuevo.";

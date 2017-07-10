@@ -143,7 +143,7 @@
     }
 
     function onClickContinuar() {
-        window.location.href = "http://girobticino.com/menuprincipal/";
+        window.location.href = "http://puntosbticino.com/menuprincipal/";
     }
 
     (function() {
